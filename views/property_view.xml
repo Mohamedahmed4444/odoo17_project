@@ -1,0 +1,105 @@
+<odoo>
+    <record id="property_view_tree" model="ir.ui.view">
+        <field name="name">property tree</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1" create="1" edit="1" delete="1">
+                <field name="name"/>
+                <field name="date_availability"/>
+                <field name="selling_price"/>
+                <field name="garden"/>
+                <field name="gate_number"/>
+            </tree>
+        </field>
+    </record>
+<!--    الموديل المستخدم هو property.-->
+<!--الأعمدة التي تظهر في الجدول هي:-->
+<!--اسم العقار (name)-->
+<!--تاريخ التوفر (date_availability)-->
+<!--سعر البيع (selling_price)-->
+<!--هل يوجد حديقة (garden)-->
+<!--رقم البوابة (gate_number)-->
+<!--هذه الشاشة تُستخدم عادة لعرض قائمة مختصرة من السجلات.-->
+
+        <record id="property_view_form" model="ir.ui.view">
+        <field name="name">property form</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="General Info.">
+                             <field name="name"/>
+                            <field name="date_availability" required="1"/>
+                            <field name="postcode"/>
+                            <field name="selling_price"/>
+                            <field name="expected_price"/>
+                            <field name="bedrooms"/>
+                            <field name="living_area"/>
+                            <field name="facades"/>
+                        </group>
+                        <group string="Additional Info.">
+                            <field name="garden"/>
+                            <field name="garage"/>
+                            <field name="gate_number"/>
+                        </group>
+                        <group>
+                            <field name="description" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!--هذا التعريف ينشئ واجهة نموذج (Form View) لعرض تفاصيل عقار واحد.-->
+<!--داخل النموذج:-->
+<!--عنوان كبير باسم العقار (name) في الأعلى.-->
+<!--3 مجموعات (group):-->
+<!--المجموعة الأولى: "General Info." تحتوي على معلومات عامة مثل الاسم، تاريخ التوفر، الرمز البريدي، السعر، عدد الغرف، المساحة، والواجهات.-->
+<!--المجموعة الثانية: "Additional Info." تحتوي على حقول إضافية مثل وجود حديقة، وجود جراج، ورقم البوابة.-->
+<!--المجموعة الثالثة: تحتوي على وصف (description).-->
+<!--النموذج يستخدم لإدخال أو تعديل بيانات العقار.-->
+
+
+        <record id="property_view_search" model="ir.ui.view">
+        <field name="name">property search</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="postcode"/>
+
+                <filter name="is_garden" string="With Garden" domain="[('garden', '=', True)]"/>
+                <filter name="is_not_garden" string="Without Gardin" domain="[('garden', '!=', True)]"/>
+                <filter name="is_garage" string="With Garage" domain="[('garage', '=', True)]"/>
+
+                <filter name="group_garden" string=" Garden" context="{'group_by': 'garden'}"/>
+            </search>
+        </field>
+    </record>
+<!--هذه هي واجهة البحث (Search View).-->
+<!--تتيح البحث في الحقول:-->
+<!--اسم العقار (name)-->
+<!--الرمز البريدي (postcode)-->
+<!--تحتوي على 4 فلاتر:-->
+<!--With Garden: عرض العقارات التي تحتوي على حديقة (garden = True).-->
+<!--Without Gardin: عرض العقارات التي لا تحتوي على حديقة (garden != True).-->
+<!--With Garage: عرض العقارات التي تحتوي على جراج (garage = True).-->
+<!--Garden: تصنيف وتجميع السجلات حسب وجود الحديقة.-->
+
+
+    <record id="property_action" model="ir.actions.act_window">
+        <field name="name">property </field>
+        <field name="res_model">property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!--    هذا تعريف Action يُستخدم لفتح نافذة تحتوي على سجلات property.-->
+<!--تفتح العرض في الوضعين: قائمة (tree) ونموذج (form).-->
+<!--هذا الأكشن يستخدم عادة لربط الواجهة مع زر في القائمة (Menu).-->
+</odoo>
