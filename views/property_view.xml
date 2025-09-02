@@ -3,8 +3,9 @@
         <field name="name">property tree</field>
         <field name="model">property</field>
         <field name="arch" type="xml">
-            <tree multi_edit="1" create="1" edit="1" delete="1">
+            <tree>
                 <field name="name"/>
+                <field name="owner_id"/>
                 <field name="date_availability"/>
                 <field name="selling_price"/>
                 <field name="garden"/>
@@ -46,6 +47,7 @@
                         </group>
                         <group string="Additional Info.">
                             <field name="garden"/>
+                            <field name="owner_id"/>
                             <field name="garage"/>
                             <field name="gate_number"/>
                         </group>
