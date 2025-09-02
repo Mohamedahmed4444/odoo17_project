@@ -47,6 +47,7 @@
                         </group>
                         <group string="Additional Info.">
                             <field name="garden"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                             <field name="owner_id"/>
                             <field name="garage"/>
                             <field name="gate_number"/>
