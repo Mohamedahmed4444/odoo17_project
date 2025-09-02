@@ -15,10 +15,16 @@
         action="property_action"
     />
         <menuitem
-        id="configration_menu"
+        id="configuration_menu"
         name="Configration"
         parent="real_estate_root_menu"
         action="owner_action"
+    />
+        <menuitem
+        id="tag_menu"
+        name="Tags"
+        parent="configuration_menu"
+        action="tag_action"
     />
 
 </odoo>
